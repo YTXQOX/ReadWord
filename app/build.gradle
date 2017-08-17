@@ -1,0 +1,67 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion '25.0.3'
+
+    defaultConfig {
+        applicationId "com.ljstudio.android.readword"
+        minSdkVersion 19
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0.0"
+        multiDexEnabled true
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    dexOptions {
+        preDexLibraries = false
+    }
+
+    defaultConfig {
+        multiDexEnabled true
+    }
+
+//    project.tasks.withType(com.android.build.gradle.tasks.Dex) {
+//        additionalParameters = ['--core-library']
+//    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+
+    compile 'com.android.support:appcompat-v7:25.3.1'
+
+//    compile files('libs/poi-3.14-20160307.jar')
+//    compile files('libs/poi-ooxml-3.14-20160307.jar')
+//    compile files('libs/poi-scratchpad-3.14-20160307.jar')
+//    compile files('libs/xmlbeans-2.6.0.jar')
+
+    //OkHttp3 .x
+    compile 'com.squareup.okhttp3:okhttp:3.6.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.6.0'
+
+    compile 'com.android.support:multidex:1.0.1'
+    compile 'com.zhy:okhttputils:2.6.2'
+
+    compile 'io.reactivex:rxandroid:1.0.1'
+}
